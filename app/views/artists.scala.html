@@ -470,6 +470,9 @@
                 if ((window.location.href.split('/search?')).length > 1) {
                     $("#show-more").hide();
                 }
+                else if ((window.location.href.split('/genre')).length > 1) {
+                    $("#show-more").hide();
+                }
 
                 followed_artists_ids = [];
                 @for(artist <- followedArtists){
