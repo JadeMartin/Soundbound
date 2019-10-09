@@ -368,7 +368,7 @@
                                                             Attend
                                                         </button>
                                                     } else {
-                                                        <a href="@routes.EventsController.attendEvent(event.getEventId)">
+                                                        <a href="@routes.EventsController.attendEventFromEventsPage(event.getEventId)">
                                                             <button class="btn btn-primary">
                                                                 <i class="fa fa-check"></i>
                                                                 Attend
@@ -377,7 +377,7 @@
                                                     }
 
                                                 } else {
-                                                    <a href="@routes.EventsController.leaveEvent(event.getEventId)">
+                                                    <a href="@routes.EventsController.leaveEventFromEventsPage(event.getEventId)">
                                                         <button class="btn btn-secondary">
                                                             <i class="fa fa-remove"></i>
                                                             Don't attend

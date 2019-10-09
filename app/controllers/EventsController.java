@@ -529,7 +529,7 @@ public class EventsController extends Controller {
     public Result attendEvent(Http.Request request, Integer eventId) {
         AttendEvent attendEvent = new AttendEvent(eventId, SessionController.getCurrentUserId(request));
         attendEventRepository.insert(attendEvent);
-        return redirect("/events/details/"+eventId).flashing("info", "Attending event: " + eventRepository.lookup(attendEvent.getEventId()).getEventName());
+        return redirect("/events/details/"+eventId).flashing("success", "Attending event: " + eventRepository.lookup(attendEvent.getEventId()).getEventName());
     }
 
     /**
@@ -540,7 +540,30 @@ public class EventsController extends Controller {
      */
     public Result leaveEvent(Http.Request request, Integer eventId) {
         attendEventRepository.delete(attendEventRepository.getAttendEventId(eventId, SessionController.getCurrentUserId(request)));
-        return redirect("/events/details/"+eventId).flashing("info", "No longer going to event");
+        return redirect("/events/details/"+eventId).flashing("success", "No longer attending event");
+    }
+
+    /**
+     * Endpoint method to attend an event with the given eventID from the Events page
+     * @param request http request
+     * @param eventId event id
+     * @return redirects back to event page
+     */
+    public Result attendEventFromEventsPage(Http.Request request, Integer eventId) {
+        AttendEvent attendEvent = new AttendEvent(eventId, SessionController.getCurrentUserId(request));
+        attendEventRepository.insert(attendEvent);
+        return redirect("/events/0").flashing("info", "Attending event: " + eventRepository.lookup(attendEvent.getEventId()).getEventName());
+    }
+
+    /**
+     * Endpoint method to withdraw from an event with the given eventID from the Events page
+     * @param request http request
+     * @param eventId event id
+     * @return redirects back to event page
+     */
+    public Result leaveEventFromEventsPage(Http.Request request, Integer eventId) {
+        attendEventRepository.delete(attendEventRepository.getAttendEventId(eventId, SessionController.getCurrentUserId(request)));
+        return redirect("/events/0").flashing("info", "No longer attending event: " + eventRepository.lookup(eventId).getEventName());
     }
 
     /**

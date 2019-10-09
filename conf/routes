@@ -161,6 +161,8 @@ GET     /artists/:artistId/events/edit/:eventId     controllers.EventsController
 POST    /artists/:artistId/events/edit/:eventId     controllers.EventsController.editEventFromArtist(request : Request, artistId : Integer, eventId : Integer)
 GET     /events/:eventId/attend                     controllers.EventsController.attendEvent(request : Request, eventId : Integer)
 GET     /events/:eventId/leave                      controllers.EventsController.leaveEvent(request : Request, eventId : Integer)
+GET     /events/:eventId/attend/event                     controllers.EventsController.attendEventFromEventsPage(request : Request, eventId : Integer)
+GET     /events/:eventId/leave/event                      controllers.EventsController.leaveEventFromEventsPage(request : Request, eventId : Integer)
 GET     /events/profile/:eventId/leave              controllers.EventsController.leaveEventFromProfile(request : Request, eventId : Integer)
 GET    /events/genre/:genreId/show                          controllers.EventsController.searchGenre(request : Request, genreId : Integer)
 GET     /events/artists/photo                   controllers.EventsController.getPhoto(artistId : Integer)
