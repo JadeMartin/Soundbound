@@ -525,7 +525,7 @@ public class ArtistController extends Controller {
      */
     public Result leaveEvent(Http.Request request, Integer artistId, Integer eventId) {
         attendEventRepository.delete(attendEventRepository.getAttendEventId(eventId, SessionController.getCurrentUserId(request)));
-        return redirect("/events/details/"+eventId).flashing("info", "No longer going to event");
+        return redirect("/artists/" + artistId + "/events/0").flashing("success", "No longer going to event: " + eventRepository.lookup(eventId).getEventName());
     }
 
 
@@ -537,9 +537,8 @@ public class ArtistController extends Controller {
      * @return redirects back to event page
      */
     public Result attendEvent(Http.Request request, Integer artistId, Integer eventId) {
-
         attendEventRepository.insert(new AttendEvent(eventId, SessionController.getCurrentUserId(request)));
-        return redirect("/events/details/"+eventId).flashing("info", "No longer going to event");
+        return redirect("/artists/" + artistId + "/events/0").flashing("success", "Attending event: " + eventRepository.lookup(eventId).getEventName());
     }
 
     /**
